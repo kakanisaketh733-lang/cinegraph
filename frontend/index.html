@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CineGraph — trace the wiring behind the credits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="db-banner" class="db-banner hidden" role="status"></div>
+
+  <header class="marquee">
+    <div class="marquee-inner">
+      <div class="reel-hole"></div>
+      <div class="marquee-text">
+        <h1>CineGraph</h1>
+        <p class="tagline">trace the wiring behind the credits</p>
+      </div>
+      <div class="reel-hole"></div>
+    </div>
+    <div class="bulb-row" aria-hidden="true"></div>
+  </header>
+
+  <nav class="canister-tabs" id="tabs">
+    <button class="tab-btn active" data-tab="explore">
+      <span class="tab-num">01</span>Explore
+    </button>
+    <button class="tab-btn" data-tab="recommend">
+      <span class="tab-num">02</span>Recommend
+    </button>
+    <button class="tab-btn" data-tab="six-degrees">
+      <span class="tab-num">03</span>Six Degrees
+    </button>
+    <button class="tab-btn" data-tab="hidden">
+      <span class="tab-num">04</span>Hidden Co-Stars
+    </button>
+    <button class="tab-btn" data-tab="company">
+      <span class="tab-num">05</span>Regular Company
+    </button>
+  </nav>
+
+  <main>
+
+    <!-- ===================== EXPLORE ===================== -->
+    <section class="panel active" id="panel-explore">
+      <div class="panel-head">
+        <h2>Explore the reel</h2>
+        <p class="panel-desc">Browse every film and every credited person in the graph.</p>
+      </div>
+
+      <div class="explore-controls">
+        <input type="text" id="explore-search" placeholder="Search titles or names…" autocomplete="off" />
+        <select id="explore-genre">
+          <option value="">All genres</option>
+        </select>
+        <div class="segmented" id="explore-mode">
+          <button class="seg-btn active" data-mode="movies">Movies</button>
+          <button class="seg-btn" data-mode="people">People</button>
+        </div>
+      </div>
+
+      <div id="explore-results" class="card-grid"></div>
+    </section>
+
+    <!-- ===================== RECOMMEND ===================== -->
+    <section class="panel" id="panel-recommend">
+      <div class="panel-head">
+        <h2>Recommend a next watch</h2>
+        <p class="panel-desc">Pick an actor. We'll walk from their films out to shared genres and back — anything sharing more genres scores higher.</p>
+      </div>
+
+      <form class="query-form" id="recommend-form">
+        <input type="text" id="recommend-name" placeholder="Actor name, e.g. Leonardo DiCaprio" autocomplete="off" required />
+        <button type="submit" class="go-btn">Recommend</button>
+      </form>
+
+      <div id="recommend-results" class="results-area"></div>
+    </section>
+
+    <!-- ===================== SIX DEGREES ===================== -->
+    <section class="panel" id="panel-six-degrees">
+      <div class="panel-head">
+        <h2>Six degrees</h2>
+        <p class="panel-desc">Shortest path of shared films between two actors — the classic graph-database party trick.</p>
+      </div>
+
+      <form class="query-form two-field" id="path-form">
+        <input type="text" id="path-from" placeholder="From, e.g. Michael Caine" autocomplete="off" required />
+        <span class="arrow-sep">→</span>
+        <input type="text" id="path-to" placeholder="To, e.g. Matt Damon" autocomplete="off" required />
+        <button type="submit" class="go-btn">Find path</button>
+      </form>
+
+      <div id="path-results" class="results-area"></div>
+    </section>
+
+    <!-- ===================== HIDDEN CO-STARS ===================== -->
+    <section class="panel" id="panel-hidden">
+      <div class="panel-head">
+        <h2>Hidden co-stars</h2>
+        <p class="panel-desc">People who share a co-star with this actor, but who have never actually appeared in a film together.</p>
+      </div>
+
+      <form class="query-form" id="hidden-form">
+        <input type="text" id="hidden-name" placeholder="Actor name, e.g. Robert De Niro" autocomplete="off" required />
+        <button type="submit" class="go-btn">Find hidden co-stars</button>
+      </form>
+
+      <div id="hidden-results" class="results-area"></div>
+    </section>
+
+    <!-- ===================== REGULAR COMPANY ===================== -->
+    <section class="panel" id="panel-company">
+      <div class="panel-head">
+        <h2>Regular company</h2>
+        <p class="panel-desc">Which actors does each director keep casting? Counts of director/actor pairs across the whole graph.</p>
+      </div>
+
+      <div class="explore-controls">
+        <select id="company-director">
+          <option value="">All directors</option>
+        </select>
+        <label class="min-label">
+          Min. films together
+          <input type="number" id="company-min" value="2" min="1" max="6" />
+        </label>
+        <button id="company-run" class="go-btn small">Run</button>
+      </div>
+
+      <div id="company-results" class="results-area"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>CineGraph — a movie-credits explorer backed by CognoDB.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

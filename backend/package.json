@@ -1,0 +1,16 @@
+{
+  "name": "cinegraph-backend",
+  "version": "1.0.0",
+  "description": "Backend for CineGraph, a movie-relationships graph explorer backed by CognoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed/seed.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "neo4j-driver": "^5.23.0"
+  }
+}
