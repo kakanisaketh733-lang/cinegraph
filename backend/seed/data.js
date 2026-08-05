@@ -1,0 +1,48 @@
+// data.js
+// Realistic seed data: well-known films, their directors, cast and genres.
+// Facts only (titles/years/credits) - used purely to populate the graph.
+
+const movies = [
+  { title: "Inception", year: 2010, director: "Christopher Nolan", genres: ["Sci-Fi", "Thriller", "Action"], cast: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page", "Tom Hardy", "Ken Watanabe"] },
+  { title: "The Dark Knight", year: 2008, director: "Christopher Nolan", genres: ["Action", "Crime", "Drama"], cast: ["Christian Bale", "Heath Ledger", "Aaron Eckhart", "Michael Caine", "Gary Oldman"] },
+  { title: "Interstellar", year: 2014, director: "Christopher Nolan", genres: ["Sci-Fi", "Drama", "Adventure"], cast: ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain", "Michael Caine"] },
+  { title: "The Prestige", year: 2006, director: "Christopher Nolan", genres: ["Drama", "Mystery", "Thriller"], cast: ["Christian Bale", "Hugh Jackman", "Scarlett Johansson", "Michael Caine"] },
+  { title: "Batman Begins", year: 2005, director: "Christopher Nolan", genres: ["Action", "Crime", "Drama"], cast: ["Christian Bale", "Michael Caine", "Liam Neeson", "Gary Oldman", "Katie Holmes"] },
+  { title: "Shutter Island", year: 2010, director: "Martin Scorsese", genres: ["Mystery", "Thriller", "Drama"], cast: ["Leonardo DiCaprio", "Mark Ruffalo", "Ben Kingsley", "Michelle Williams"] },
+  { title: "The Wolf of Wall Street", year: 2013, director: "Martin Scorsese", genres: ["Biography", "Crime", "Comedy"], cast: ["Leonardo DiCaprio", "Jonah Hill", "Margot Robbie", "Matthew McConaughey"] },
+  { title: "Goodfellas", year: 1990, director: "Martin Scorsese", genres: ["Biography", "Crime", "Drama"], cast: ["Robert De Niro", "Ray Liotta", "Joe Pesci", "Lorraine Bracco"] },
+  { title: "The Departed", year: 2006, director: "Martin Scorsese", genres: ["Crime", "Drama", "Thriller"], cast: ["Leonardo DiCaprio", "Matt Damon", "Jack Nicholson", "Mark Wahlberg"] },
+  { title: "Titanic", year: 1997, director: "James Cameron", genres: ["Drama", "Romance"], cast: ["Leonardo DiCaprio", "Kate Winslet", "Billy Zane", "Kathy Bates"] },
+  { title: "Avatar", year: 2009, director: "James Cameron", genres: ["Sci-Fi", "Adventure", "Action"], cast: ["Sam Worthington", "Zoe Saldana", "Sigourney Weaver", "Michelle Rodriguez"] },
+  { title: "Aliens", year: 1986, director: "James Cameron", genres: ["Sci-Fi", "Action", "Horror"], cast: ["Sigourney Weaver", "Michael Biehn", "Paul Reiser"] },
+  { title: "The Terminator", year: 1984, director: "James Cameron", genres: ["Sci-Fi", "Action"], cast: ["Arnold Schwarzenegger", "Linda Hamilton", "Michael Biehn"] },
+  { title: "Terminator 2: Judgment Day", year: 1991, director: "James Cameron", genres: ["Sci-Fi", "Action"], cast: ["Arnold Schwarzenegger", "Linda Hamilton", "Robert Patrick"] },
+  { title: "Pulp Fiction", year: 1994, director: "Quentin Tarantino", genres: ["Crime", "Drama"], cast: ["John Travolta", "Samuel L. Jackson", "Uma Thurman", "Bruce Willis"] },
+  { title: "Kill Bill: Vol. 1", year: 2003, director: "Quentin Tarantino", genres: ["Action", "Crime", "Thriller"], cast: ["Uma Thurman", "David Carradine", "Lucy Liu", "Michael Madsen"] },
+  { title: "Django Unchained", year: 2012, director: "Quentin Tarantino", genres: ["Drama", "Western"], cast: ["Jamie Foxx", "Christoph Waltz", "Leonardo DiCaprio", "Samuel L. Jackson"] },
+  { title: "Inglourious Basterds", year: 2009, director: "Quentin Tarantino", genres: ["Adventure", "Drama", "War"], cast: ["Brad Pitt", "Christoph Waltz", "Michael Fassbender", "Diane Kruger"] },
+  { title: "Fight Club", year: 1999, director: "David Fincher", genres: ["Drama", "Thriller"], cast: ["Brad Pitt", "Edward Norton", "Helena Bonham Carter"] },
+  { title: "Se7en", year: 1995, director: "David Fincher", genres: ["Crime", "Drama", "Mystery"], cast: ["Brad Pitt", "Morgan Freeman", "Gwyneth Paltrow", "Kevin Spacey"] },
+  { title: "The Social Network", year: 2010, director: "David Fincher", genres: ["Biography", "Drama"], cast: ["Jesse Eisenberg", "Andrew Garfield", "Justin Timberlake", "Rooney Mara"] },
+  { title: "Gone Girl", year: 2014, director: "David Fincher", genres: ["Drama", "Mystery", "Thriller"], cast: ["Ben Affleck", "Rosamund Pike", "Neil Patrick Harris"] },
+  { title: "Ocean's Eleven", year: 2001, director: "Steven Soderbergh", genres: ["Crime", "Comedy", "Thriller"], cast: ["George Clooney", "Brad Pitt", "Matt Damon", "Julia Roberts"] },
+  { title: "Good Will Hunting", year: 1997, director: "Gus Van Sant", genres: ["Drama", "Romance"], cast: ["Matt Damon", "Robin Williams", "Ben Affleck", "Minnie Driver"] },
+  { title: "The Bourne Identity", year: 2002, director: "Doug Liman", genres: ["Action", "Mystery", "Thriller"], cast: ["Matt Damon", "Franka Potente", "Chris Cooper"] },
+  { title: "Catch Me If You Can", year: 2002, director: "Steven Spielberg", genres: ["Biography", "Crime", "Drama"], cast: ["Leonardo DiCaprio", "Tom Hanks", "Christopher Walken"] },
+  { title: "Saving Private Ryan", year: 1998, director: "Steven Spielberg", genres: ["Drama", "War"], cast: ["Tom Hanks", "Matt Damon", "Edward Burns", "Tom Sizemore"] },
+  { title: "Jurassic Park", year: 1993, director: "Steven Spielberg", genres: ["Sci-Fi", "Adventure"], cast: ["Sam Neill", "Laura Dern", "Jeff Goldblum", "Richard Attenborough"] },
+  { title: "Schindler's List", year: 1993, director: "Steven Spielberg", genres: ["Biography", "Drama", "History"], cast: ["Liam Neeson", "Ben Kingsley", "Ralph Fiennes"] },
+  { title: "Forrest Gump", year: 1994, director: "Robert Zemeckis", genres: ["Drama", "Romance"], cast: ["Tom Hanks", "Robin Wright", "Gary Sinise"] },
+  { title: "Cast Away", year: 2000, director: "Robert Zemeckis", genres: ["Adventure", "Drama"], cast: ["Tom Hanks", "Helen Hunt"] },
+  { title: "The Green Mile", year: 1999, director: "Frank Darabont", genres: ["Crime", "Drama", "Fantasy"], cast: ["Tom Hanks", "Michael Clarke Duncan", "David Morse"] },
+  { title: "The Shawshank Redemption", year: 1994, director: "Frank Darabont", genres: ["Drama"], cast: ["Tim Robbins", "Morgan Freeman", "Bob Gunton"] },
+  { title: "American Hustle", year: 2013, director: "David O. Russell", genres: ["Crime", "Drama"], cast: ["Christian Bale", "Bradley Cooper", "Amy Adams", "Jennifer Lawrence"] },
+  { title: "Silver Linings Playbook", year: 2012, director: "David O. Russell", genres: ["Comedy", "Drama", "Romance"], cast: ["Bradley Cooper", "Jennifer Lawrence", "Robert De Niro"] },
+  { title: "Joy", year: 2015, director: "David O. Russell", genres: ["Biography", "Drama"], cast: ["Jennifer Lawrence", "Bradley Cooper", "Robert De Niro"] },
+  { title: "The Hunger Games", year: 2012, director: "Gary Ross", genres: ["Action", "Adventure", "Sci-Fi"], cast: ["Jennifer Lawrence", "Josh Hutcherson", "Liam Hemsworth"] },
+  { title: "X-Men: Days of Future Past", year: 2014, director: "Bryan Singer", genres: ["Action", "Adventure", "Sci-Fi"], cast: ["Hugh Jackman", "James McAvoy", "Michael Fassbender", "Jennifer Lawrence"] },
+  { title: "Logan", year: 2017, director: "James Mangold", genres: ["Action", "Drama", "Sci-Fi"], cast: ["Hugh Jackman", "Patrick Stewart", "Dafne Keen"] },
+  { title: "Ford v Ferrari", year: 2019, director: "James Mangold", genres: ["Biography", "Drama", "Sport"], cast: ["Matt Damon", "Christian Bale", "Jon Bernthal"] },
+];
+
+module.exports = { movies };

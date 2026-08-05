@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CineGraph — a film credits atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="marquee">
+  <div class="marquee-inner">
+    <div class="brand">
+      <span class="brand-mark">✦</span>
+      <h1>CineGraph</h1>
+    </div>
+    <p class="tagline">Trace the credits. Find the hidden connections.</p>
+  </div>
+  <div class="sprockets" aria-hidden="true"></div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="CineGraph views">
+  <button class="tab active" data-panel="explore" role="tab" aria-selected="true">Explore</button>
+  <button class="tab" data-panel="recommend" role="tab" aria-selected="false">Recommend Movies</button>
+  <button class="tab" data-panel="degrees" role="tab" aria-selected="false">Six Degrees</button>
+  <button class="tab" data-panel="hidden" role="tab" aria-selected="false">Hidden Co-Stars</button>
+  <button class="tab" data-panel="regulars" role="tab" aria-selected="false">Regular Company</button>
+</nav>
+
+<main id="app">
+
+  <!-- EXPLORE -->
+  <section class="panel active" id="panel-explore" role="tabpanel">
+    <div class="panel-head">
+      <h2>Explore the archive</h2>
+      <p class="panel-sub">Search the reel. Movies and people are all connected underneath.</p>
+    </div>
+    <div class="explore-grid">
+      <div class="explore-col">
+        <label class="field-label" for="movie-search">Movies</label>
+        <input class="ticket-input" id="movie-search" type="text" placeholder="Search a title…" autocomplete="off" />
+        <div class="results-list" id="movie-results"><p class="empty-state">Loading movies…</p></div>
+      </div>
+      <div class="explore-col">
+        <label class="field-label" for="person-search">People</label>
+        <input class="ticket-input" id="person-search" type="text" placeholder="Search an actor or director…" autocomplete="off" />
+        <div class="results-list" id="person-results"><p class="empty-state">Loading people…</p></div>
+      </div>
+    </div>
+    <div class="detail-drawer" id="detail-drawer" hidden></div>
+  </section>
+
+  <!-- RECOMMEND -->
+  <section class="panel" id="panel-recommend" role="tabpanel">
+    <div class="panel-head">
+      <h2>Recommend movies</h2>
+      <p class="panel-sub">Two-hop traversal: person → acted in → movie → shares genre → other movie, excluding what they've already done.</p>
+    </div>
+    <div class="query-row">
+      <select class="ticket-input" id="recommend-person"></select>
+      <button class="reel-button" id="recommend-run">Find recommendations</button>
+    </div>
+    <div class="results-list" id="recommend-results"></div>
+  </section>
+
+  <!-- SIX DEGREES -->
+  <section class="panel" id="panel-degrees" role="tabpanel">
+    <div class="panel-head">
+      <h2>Six degrees</h2>
+      <p class="panel-sub">Shortest path between two people, hopping through shared films.</p>
+    </div>
+    <div class="query-row three">
+      <select class="ticket-input" id="degrees-from"></select>
+      <span class="query-arrow">→</span>
+      <select class="ticket-input" id="degrees-to"></select>
+      <button class="reel-button" id="degrees-run">Trace path</button>
+    </div>
+    <div class="results-list" id="degrees-results"></div>
+  </section>
+
+  <!-- HIDDEN CO-STARS -->
+  <section class="panel" id="panel-hidden" role="tabpanel">
+    <div class="panel-head">
+      <h2>Hidden co-stars</h2>
+      <p class="panel-sub">People who share several mutual co-stars, yet have never been cast in the same film together.</p>
+    </div>
+    <div class="query-row">
+      <select class="ticket-input" id="hidden-person" aria-label="Choose a person"></select>
+      <button class="reel-button" id="hidden-run">Find hidden co-stars</button>
+    </div>
+    <div class="results-list" id="hidden-results"></div>
+  </section>
+
+  <!-- REGULAR COMPANY -->
+  <section class="panel" id="panel-regulars" role="tabpanel">
+    <div class="panel-head">
+      <h2>Regular company</h2>
+      <p class="panel-sub">Directors and actors who keep casting each other, ranked by how often they've teamed up.</p>
+    </div>
+    <div class="results-list" id="regulars-results"><p class="empty-state">Loading…</p></div>
+  </section>
+
+</main>
+
+<div class="db-banner" id="db-banner" hidden>
+  <span>⚠ Can't reach the database right now. Check the connection and refresh.</span>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
