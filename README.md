@@ -170,7 +170,3 @@ Because the Express server serves both the API and the static frontend from one 
 4. Keep your CognoDB instance running so the live demo keeps working.
 
 ---
-
-## 8. Screenshots
-
-`<add 2-3 screenshots of the running app here: Explore, Recommend, Six Degrees>`
